@@ -20,7 +20,7 @@ function renderBingoCard(rows, index) {
   }
   return bingoCard;
 }
-
+var lowestBingo = 101;
 var maxIterator = bingoRows.length - 5;
 for (var i = 0; i <= maxIterator; i += 5) {
   console.log("Round: " + i);
@@ -76,7 +76,9 @@ function checkBingo(card, numbers) {
 
   for (var i = 0; i < numbersLength; ++i) {
     // each row
-    var number = numbers.pop();
+    //var number = numbers.pop();
+
+    var number = numbers[numbersLength - (i + 1)];
     var index = row1.indexOf(number);
     if (index != -1) {
       bingoCheck[index] = "X";
@@ -108,7 +110,10 @@ function checkBingo(card, numbers) {
         bingoCheck[prospect + 3] == "X" &&
         bingoCheck[prospect + 4] == "X"
       ) {
-        console.log("Horizontal bingo!\nStopped at " + (i + 1));
+        if (i < lowestBingo) {
+          lowestBingo = i;
+          console.log("New lowest bingo on horizontal check: " + i);
+        }
         break;
       } else if (
         bingoCheck[prospect + 5] == "X" &&
@@ -116,7 +121,10 @@ function checkBingo(card, numbers) {
         bingoCheck[prospect + 15] == "X" &&
         bingoCheck[prospect + 20] == "X"
       ) {
-        console.log("Vertical bingo!\nStopped at " + (i + 1));
+        if (i < lowestBingo) {
+          lowestBingo = i;
+          console.log("New lowest bingo on vertical check: " + i);
+        }
         break;
       }
     }
