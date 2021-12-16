@@ -113,6 +113,99 @@ function checkBingo(card, numbers) {
         if (i < lowestBingo) {
           lowestBingo = i;
           console.log("New lowest bingo on horizontal check: " + i);
+          console.log("Start pos: " + bingoCheck.indexOf("X", from));
+          console.log(row1);
+          console.log(row2);
+          console.log(row3);
+          console.log(row4);
+          console.log(row5);
+          var sum = 0;
+          switch (from) {
+            case 0:
+              // add rows 2-5
+              row2.forEach((_) => {
+                sum += parseInt(_);
+              });
+              row3.forEach((_) => {
+                sum += parseInt(_);
+              });
+              row4.forEach((_) => {
+                sum += parseInt(_);
+              });
+              row5.forEach((_) => {
+                sum += parseInt(_);
+              });
+              break;
+            case 1:
+              row1.forEach((_) => {
+                sum += parseInt(_);
+              });
+              row3.forEach((_) => {
+                sum += parseInt(_);
+              });
+              row4.forEach((_) => {
+                sum += parseInt(_);
+              });
+              row5.forEach((_) => {
+                sum += parseInt(_);
+              });
+              break;
+            // add rows 1, 3-5
+            case 2:
+              row1.forEach((_) => {
+                sum += parseInt(_);
+              });
+              row2.forEach((_) => {
+                sum += parseInt(_);
+              });
+              row4.forEach((_) => {
+                sum += parseInt(_);
+              });
+              row5.forEach((_) => {
+                sum += parseInt(_);
+              });
+              break;
+            // add rows 1, 2, 4, 5
+            case 3:
+              row1.forEach((_) => {
+                sum += parseInt(_);
+              });
+              row2.forEach((_) => {
+                sum += parseInt(_);
+              });
+              row3.forEach((_) => {
+                sum += parseInt(_);
+              });
+              row5.forEach((_) => {
+                sum += parseInt(_);
+              });
+              break;
+            // add rows 1, 2, 3, 5
+            case 4:
+              row1.forEach((_) => {
+                sum += parseInt(_);
+              });
+              row2.forEach((_) => {
+                sum += parseInt(_);
+              });
+              row3.forEach((_) => {
+                sum += parseInt(_);
+              });
+              row4.forEach((_) => {
+                sum += parseInt(_);
+              });
+              break;
+            // add rows 1, 2, 3, 4
+            default:
+              console.log("bad from case: " + from);
+              break;
+          }
+          console.log("Sum of non-bingo card numbers: " + sum);
+          console.log("Winning number: " + number);
+          console.log("Resulting number: " + number * sum);
+          sum = 0;
+          // FIND SUM OF ALL *UNMARKED* NUMBERS
+          // MULTIPLY SUM WITH WINNING NUMBER
         }
         break;
       } else if (
@@ -124,6 +217,12 @@ function checkBingo(card, numbers) {
         if (i < lowestBingo) {
           lowestBingo = i;
           console.log("New lowest bingo on vertical check: " + i);
+          console.log("Start pos: " + (prospect + 1));
+          console.log(row1);
+          console.log(row2);
+          console.log(row3);
+          console.log(row4);
+          console.log(row5);
         }
         break;
       }
