@@ -99,11 +99,11 @@ function checkBingo(card, numbers) {
     if (index != -1) {
       bingoCheck[index + 20] = "X";
     }
-    // eval bingo
+    // eval bingo (BUGGED -> SOMETIMES PROSPECT INDEX OF BINGOCHECK GIVES UNDEFINED)
     if (i > 4) {
       var prospect = bingoCheck.indexOf("X", from);
       from = prospect + 1;
-
+      console.log(bingoCheck[prospect] == "X");
       if (
         bingoCheck[prospect + 1] == "X" &&
         bingoCheck[prospect + 2] == "X" &&
@@ -120,21 +120,72 @@ function checkBingo(card, numbers) {
           console.log(row4);
           console.log(row5);
           var sum = 0;
+          // switch case is bugged
+
           switch (from) {
             case 0:
-              // add rows 2-5
-              row2.forEach((_) => {
-                sum += parseInt(_);
-              });
-              row3.forEach((_) => {
-                sum += parseInt(_);
-              });
-              row4.forEach((_) => {
-                sum += parseInt(_);
-              });
-              row5.forEach((_) => {
-                sum += parseInt(_);
-              });
+              // add rows 2-5 (BUGGED, SHOULD NOT ADD PREVIOUSLY DREWN NUMBERS)
+
+              if (bingoCheck[5] == undefined) {
+                sum += parseInt(row2[0]);
+              }
+              if (bingoCheck[6] == undefined) {
+                sum += parseInt(row2[1]);
+              }
+              if (bingoCheck[7] == undefined) {
+                sum += parseInt(row2[2]);
+              }
+              if (bingoCheck[8] == undefined) {
+                sum += parseInt(row2[3]);
+              }
+              if (bingoCheck[9] == undefined) {
+                sum += parseInt(row2[4]);
+              }
+              if (bingoCheck[10] == undefined) {
+                sum += parseInt(row3[0]);
+              }
+              if (bingoCheck[11] == undefined) {
+                sum += parseInt(row3[1]);
+              }
+              if (bingoCheck[12] == undefined) {
+                sum += parseInt(row3[2]);
+              }
+              if (bingoCheck[13] == undefined) {
+                sum += parseInt(row3[3]);
+              }
+              if (bingoCheck[14] == undefined) {
+                sum += parseInt(row3[4]);
+              }
+              if (bingoCheck[15] == undefined) {
+                sum += parseInt(row4[0]);
+              }
+              if (bingoCheck[16] == undefined) {
+                sum += parseInt(row4[1]);
+              }
+              if (bingoCheck[17] == undefined) {
+                sum += parseInt(row4[2]);
+              }
+              if (bingoCheck[18] == undefined) {
+                sum += parseInt(row4[3]);
+              }
+              if (bingoCheck[19] == undefined) {
+                sum += parseInt(row4[4]);
+              }
+              if (bingoCheck[20] == undefined) {
+                sum += parseInt(row5[0]);
+              }
+              if (bingoCheck[21] == undefined) {
+                sum += parseInt(row5[1]);
+              }
+              if (bingoCheck[22] == undefined) {
+                sum += parseInt(row5[2]);
+              }
+              if (bingoCheck[23] == undefined) {
+                sum += parseInt(row5[3]);
+              }
+              if (bingoCheck[24] == undefined) {
+                sum += parseInt(row5[4]);
+              }
               break;
             case 1:
               row1.forEach((_) => {
