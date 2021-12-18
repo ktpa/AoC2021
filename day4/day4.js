@@ -10,8 +10,7 @@ var bingoRows = contentArr.filter((_) => {
   if (_.length == 14) return _;
 });
 
-//can now pop numbers
-bingoNum = bingoNum.toString().split(",").reverse();
+bingoNum = bingoNum.toString().split(",");
 
 function renderBingoCard(rows, index) {
   var bingoCard = [];
@@ -23,7 +22,6 @@ function renderBingoCard(rows, index) {
 var lowestBingo = 101;
 var maxIterator = bingoRows.length - 5;
 for (var i = 0; i <= maxIterator; i += 5) {
-  console.log("Round: " + i);
   checkBingo(renderBingoCard(bingoRows, i), bingoNum);
 }
 
@@ -76,207 +74,139 @@ function checkBingo(card, numbers) {
 
   for (var i = 0; i < numbersLength; ++i) {
     // each row
-    //var number = numbers.pop();
+    // WINNING ITERATION: 22
+    // WINNING NUMBER: 49
+    var number = numbers[i];
+    //console.log(number);
+    console.log("Drewn number: " + number);
 
-    var number = numbers[numbersLength - (i + 1)];
     var index = row1.indexOf(number);
     if (index != -1) {
       bingoCheck[index] = "X";
     }
+
     index = row2.indexOf(number);
     if (index != -1) {
       bingoCheck[index + 5] = "X";
     }
+
     index = row3.indexOf(number);
     if (index != -1) {
       bingoCheck[index + 10] = "X";
     }
+
     index = row4.indexOf(number);
     if (index != -1) {
       bingoCheck[index + 15] = "X";
     }
+
     index = row5.indexOf(number);
     if (index != -1) {
       bingoCheck[index + 20] = "X";
     }
-    // eval bingo (BUGGED -> SOMETIMES PROSPECT INDEX OF BINGOCHECK GIVES UNDEFINED)
+
     if (i > 4) {
-      var prospect = bingoCheck.indexOf("X", from);
-      from = prospect + 1;
-      console.log(bingoCheck[prospect] == "X");
       if (
-        bingoCheck[prospect + 1] == "X" &&
-        bingoCheck[prospect + 2] == "X" &&
-        bingoCheck[prospect + 3] == "X" &&
-        bingoCheck[prospect + 4] == "X"
+        bingoCheck[0] == "X" &&
+        bingoCheck[1] == "X" &&
+        bingoCheck[2] == "X" &&
+        bingoCheck[3] == "X" &&
+        bingoCheck[4] == "X"
       ) {
+        // BINGO ON FIRST ROW
         if (i < lowestBingo) {
           lowestBingo = i;
-          console.log("New lowest bingo on horizontal check: " + i);
-          console.log("Start pos: " + bingoCheck.indexOf("X", from));
-          console.log(row1);
-          console.log(row2);
-          console.log(row3);
-          console.log(row4);
-          console.log(row5);
-          var sum = 0;
-          // switch case is bugged
-
-          switch (from) {
-            case 0:
-              // add rows 2-5 (BUGGED, SHOULD NOT ADD PREVIOUSLY DREWN NUMBERS)
-
-              if (bingoCheck[5] == undefined) {
-                sum += parseInt(row2[0]);
-              }
-              if (bingoCheck[6] == undefined) {
-                sum += parseInt(row2[1]);
-              }
-              if (bingoCheck[7] == undefined) {
-                sum += parseInt(row2[2]);
-              }
-              if (bingoCheck[8] == undefined) {
-                sum += parseInt(row2[3]);
-              }
-              if (bingoCheck[9] == undefined) {
-                sum += parseInt(row2[4]);
-              }
-              if (bingoCheck[10] == undefined) {
-                sum += parseInt(row3[0]);
-              }
-              if (bingoCheck[11] == undefined) {
-                sum += parseInt(row3[1]);
-              }
-              if (bingoCheck[12] == undefined) {
-                sum += parseInt(row3[2]);
-              }
-              if (bingoCheck[13] == undefined) {
-                sum += parseInt(row3[3]);
-              }
-              if (bingoCheck[14] == undefined) {
-                sum += parseInt(row3[4]);
-              }
-              if (bingoCheck[15] == undefined) {
-                sum += parseInt(row4[0]);
-              }
-              if (bingoCheck[16] == undefined) {
-                sum += parseInt(row4[1]);
-              }
-              if (bingoCheck[17] == undefined) {
-                sum += parseInt(row4[2]);
-              }
-              if (bingoCheck[18] == undefined) {
-                sum += parseInt(row4[3]);
-              }
-              if (bingoCheck[19] == undefined) {
-                sum += parseInt(row4[4]);
-              }
-              if (bingoCheck[20] == undefined) {
-                sum += parseInt(row5[0]);
-              }
-              if (bingoCheck[21] == undefined) {
-                sum += parseInt(row5[1]);
-              }
-              if (bingoCheck[22] == undefined) {
-                sum += parseInt(row5[2]);
-              }
-              if (bingoCheck[23] == undefined) {
-                sum += parseInt(row5[3]);
-              }
-              if (bingoCheck[24] == undefined) {
-                sum += parseInt(row5[4]);
-              }
-              break;
-            case 1:
-              row1.forEach((_) => {
-                sum += parseInt(_);
-              });
-              row3.forEach((_) => {
-                sum += parseInt(_);
-              });
-              row4.forEach((_) => {
-                sum += parseInt(_);
-              });
-              row5.forEach((_) => {
-                sum += parseInt(_);
-              });
-              break;
-            // add rows 1, 3-5
-            case 2:
-              row1.forEach((_) => {
-                sum += parseInt(_);
-              });
-              row2.forEach((_) => {
-                sum += parseInt(_);
-              });
-              row4.forEach((_) => {
-                sum += parseInt(_);
-              });
-              row5.forEach((_) => {
-                sum += parseInt(_);
-              });
-              break;
-            // add rows 1, 2, 4, 5
-            case 3:
-              row1.forEach((_) => {
-                sum += parseInt(_);
-              });
-              row2.forEach((_) => {
-                sum += parseInt(_);
-              });
-              row3.forEach((_) => {
-                sum += parseInt(_);
-              });
-              row5.forEach((_) => {
-                sum += parseInt(_);
-              });
-              break;
-            // add rows 1, 2, 3, 5
-            case 4:
-              row1.forEach((_) => {
-                sum += parseInt(_);
-              });
-              row2.forEach((_) => {
-                sum += parseInt(_);
-              });
-              row3.forEach((_) => {
-                sum += parseInt(_);
-              });
-              row4.forEach((_) => {
-                sum += parseInt(_);
-              });
-              break;
-            // add rows 1, 2, 3, 4
-            default:
-              console.log("bad from case: " + from);
-              break;
-          }
-          console.log("Sum of non-bingo card numbers: " + sum);
-          console.log("Winning number: " + number);
-          console.log("Resulting number: " + number * sum);
-          sum = 0;
-          // FIND SUM OF ALL *UNMARKED* NUMBERS
-          // MULTIPLY SUM WITH WINNING NUMBER
-        }
-        break;
-      } else if (
-        bingoCheck[prospect + 5] == "X" &&
-        bingoCheck[prospect + 10] == "X" &&
-        bingoCheck[prospect + 15] == "X" &&
-        bingoCheck[prospect + 20] == "X"
-      ) {
-        if (i < lowestBingo) {
-          lowestBingo = i;
-          console.log("New lowest bingo on vertical check: " + i);
-          console.log("Start pos: " + (prospect + 1));
+          console.log("\nNew lowest bingo iteration on horizontal check: " + i);
+          console.log("Start pos: " + 0 + "\n");
           console.log(row1);
           console.log(row2);
           console.log(row3);
           console.log(row4);
           console.log(row5);
         }
-        break;
       }
+      if (
+        bingoCheck[5] == "X" &&
+        bingoCheck[6] == "X" &&
+        bingoCheck[7] == "X" &&
+        bingoCheck[8] == "X" &&
+        bingoCheck[9] == "X"
+      ) {
+        // BINGO ON SECOND ROW
+        if (i < lowestBingo) {
+          lowestBingo = i;
+          console.log("\nNew lowest bingo iteration on horizontal check: " + i);
+          console.log("Start pos: " + 5 + "\n");
+          console.log(row1);
+          console.log(row2);
+          console.log(row3);
+          console.log(row4);
+          console.log(row5);
+        }
+      }
+      if (
+        bingoCheck[10] == "X" &&
+        bingoCheck[11] == "X" &&
+        bingoCheck[12] == "X" &&
+        bingoCheck[13] == "X" &&
+        bingoCheck[14] == "X"
+      ) {
+        // BINGO ON THIRD ROW
+        if (i < lowestBingo) {
+          lowestBingo = i;
+          console.log("\nNew lowest bingo iteration on horizontal check: " + i);
+          console.log("Start pos: " + 10 + "\n");
+          console.log(row1);
+          console.log(row2);
+          console.log(row3);
+          console.log(row4);
+          console.log(row5);
+        }
+      }
+
+      if (
+        bingoCheck[15] == "X" &&
+        bingoCheck[16] == "X" &&
+        bingoCheck[17] == "X" &&
+        bingoCheck[18] == "X" &&
+        bingoCheck[19] == "X"
+      ) {
+        // BINGO ON FOURTH ROW
+        if (i < lowestBingo) {
+          lowestBingo = i;
+          console.log("\nNew lowest bingo iteration on horizontal check: " + i);
+          console.log("Start pos: " + 15 + "\n");
+          console.log(row1);
+          console.log(row2);
+          console.log(row3);
+          console.log(row4);
+          console.log(row5);
+        }
+      }
+      if (
+        bingoCheck[20] == "X" &&
+        bingoCheck[21] == "X" &&
+        bingoCheck[22] == "X" &&
+        bingoCheck[23] == "X" &&
+        bingoCheck[24] == "X"
+      ) {
+        console.log("BINGO ON FIFTH ROW");
+        if (i < lowestBingo) {
+          lowestBingo = i;
+          console.log("\nNew lowest bingo iteration on horizontal check: " + i);
+          console.log("Start pos: " + 20 + "\n");
+          console.log(row1);
+          console.log(row2);
+          console.log(row3);
+          console.log(row4);
+          console.log(row5);
+        }
+      }
+      if (number == 49) {
+        console.log("Should end here.");
+      }
+      // FIND SUM OF ALL *UNMARKED* NUMBERS
+      // MULTIPLY SUM WITH WINNING NUMBER
     }
   }
 }
