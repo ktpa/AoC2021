@@ -70,15 +70,14 @@ function checkBingo(card, numbers) {
   var bingoCheck = Array(25);
   var numbersLength = numbers.length;
   // all numbers
-  var from = 0;
+  var bingo = false;
+  var sum = 0;
 
   for (var i = 0; i < numbersLength; ++i) {
     // each row
     // WINNING ITERATION: 22
     // WINNING NUMBER: 49
     var number = numbers[i];
-    //console.log(number);
-    console.log("Drewn number: " + number);
 
     var index = row1.indexOf(number);
     if (index != -1) {
@@ -105,7 +104,7 @@ function checkBingo(card, numbers) {
       bingoCheck[index + 20] = "X";
     }
 
-    if (i > 4) {
+    if (i >= 4) {
       if (
         bingoCheck[0] == "X" &&
         bingoCheck[1] == "X" &&
@@ -115,14 +114,18 @@ function checkBingo(card, numbers) {
       ) {
         // BINGO ON FIRST ROW
         if (i < lowestBingo) {
+          bingo = true;
           lowestBingo = i;
-          console.log("\nNew lowest bingo iteration on horizontal check: " + i);
+          console.log(
+            "\nNew lowest bingo iteration on horizontal check: " + (i + 1)
+          );
           console.log("Start pos: " + 0 + "\n");
           console.log(row1);
           console.log(row2);
           console.log(row3);
           console.log(row4);
           console.log(row5);
+          break;
         }
       }
       if (
@@ -134,14 +137,18 @@ function checkBingo(card, numbers) {
       ) {
         // BINGO ON SECOND ROW
         if (i < lowestBingo) {
+          bingo = true;
           lowestBingo = i;
-          console.log("\nNew lowest bingo iteration on horizontal check: " + i);
+          console.log(
+            "\nNew lowest bingo iteration on horizontal check: " + (i + 1)
+          );
           console.log("Start pos: " + 5 + "\n");
           console.log(row1);
           console.log(row2);
           console.log(row3);
           console.log(row4);
           console.log(row5);
+          break;
         }
       }
       if (
@@ -153,14 +160,18 @@ function checkBingo(card, numbers) {
       ) {
         // BINGO ON THIRD ROW
         if (i < lowestBingo) {
+          bingo = true;
           lowestBingo = i;
-          console.log("\nNew lowest bingo iteration on horizontal check: " + i);
+          console.log(
+            "\nNew lowest bingo iteration on horizontal check: " + (i + 1)
+          );
           console.log("Start pos: " + 10 + "\n");
           console.log(row1);
           console.log(row2);
           console.log(row3);
           console.log(row4);
           console.log(row5);
+          break;
         }
       }
 
@@ -173,14 +184,18 @@ function checkBingo(card, numbers) {
       ) {
         // BINGO ON FOURTH ROW
         if (i < lowestBingo) {
+          bingo = true;
           lowestBingo = i;
-          console.log("\nNew lowest bingo iteration on horizontal check: " + i);
+          console.log(
+            "\nNew lowest bingo iteration on horizontal check: " + (i + 1)
+          );
           console.log("Start pos: " + 15 + "\n");
           console.log(row1);
           console.log(row2);
           console.log(row3);
           console.log(row4);
           console.log(row5);
+          break;
         }
       }
       if (
@@ -192,21 +207,168 @@ function checkBingo(card, numbers) {
       ) {
         console.log("BINGO ON FIFTH ROW");
         if (i < lowestBingo) {
+          bingo = true;
           lowestBingo = i;
-          console.log("\nNew lowest bingo iteration on horizontal check: " + i);
+          console.log(
+            "\nNew lowest bingo iteration on horizontal check: " + (i + 1)
+          );
           console.log("Start pos: " + 20 + "\n");
           console.log(row1);
           console.log(row2);
           console.log(row3);
           console.log(row4);
           console.log(row5);
+          break;
         }
       }
-      if (number == 49) {
-        console.log("Should end here.");
+      // COL CHECKS
+      if (
+        bingoCheck[0] == "X" &&
+        bingoCheck[5] == "X" &&
+        bingoCheck[10] == "X" &&
+        bingoCheck[15] == "X" &&
+        bingoCheck[20] == "X"
+      ) {
+        console.log("BINGO ON FIRST COL");
+        if (i < lowestBingo) {
+          bingo = true;
+          lowestBingo = i;
+          console.log(
+            "\nNew lowest bingo iteration on vertical check: " + (i + 1)
+          );
+          console.log("Start pos: " + 0 + "\n");
+          console.log(row1);
+          console.log(row2);
+          console.log(row3);
+          console.log(row4);
+          console.log(row5);
+          break;
+        }
+      }
+      if (
+        bingoCheck[1] == "X" &&
+        bingoCheck[6] == "X" &&
+        bingoCheck[11] == "X" &&
+        bingoCheck[16] == "X" &&
+        bingoCheck[21] == "X"
+      ) {
+        console.log("BINGO ON SECOND COL");
+        if (i < lowestBingo) {
+          bingo = true;
+          lowestBingo = i;
+          console.log(
+            "\nNew lowest bingo iteration on vertical check: " + (i + 1)
+          );
+          console.log("Start pos: " + 1 + "\n");
+          console.log(row1);
+          console.log(row2);
+          console.log(row3);
+          console.log(row4);
+          console.log(row5);
+          break;
+        }
+      }
+      if (
+        bingoCheck[2] == "X" &&
+        bingoCheck[7] == "X" &&
+        bingoCheck[12] == "X" &&
+        bingoCheck[17] == "X" &&
+        bingoCheck[22] == "X"
+      ) {
+        console.log("BINGO ON THIRD COL");
+        if (i < lowestBingo) {
+          bingo = true;
+          lowestBingo = i;
+          console.log(
+            "\nNew lowest bingo iteration on vertical check: " + (i + 1)
+          );
+          console.log("Start pos: " + 2 + "\n");
+          console.log(row1);
+          console.log(row2);
+          console.log(row3);
+          console.log(row4);
+          console.log(row5);
+          break;
+        }
+      }
+      if (
+        bingoCheck[3] == "X" &&
+        bingoCheck[8] == "X" &&
+        bingoCheck[13] == "X" &&
+        bingoCheck[18] == "X" &&
+        bingoCheck[23] == "X"
+      ) {
+        console.log("BINGO ON FOURTH COL");
+        if (i < lowestBingo) {
+          bingo = true;
+          lowestBingo = i;
+          console.log(
+            "\nNew lowest bingo iteration on vertical check: " + (i + 1)
+          );
+          console.log("Start pos: " + 3 + "\n");
+          console.log(row1);
+          console.log(row2);
+          console.log(row3);
+          console.log(row4);
+          console.log(row5);
+          break;
+        }
+      }
+      if (
+        bingoCheck[4] == "X" &&
+        bingoCheck[9] == "X" &&
+        bingoCheck[14] == "X" &&
+        bingoCheck[19] == "X" &&
+        bingoCheck[24] == "X"
+      ) {
+        console.log("BINGO ON FIFTH COL");
+        if (i < lowestBingo) {
+          bingo = true;
+          lowestBingo = i;
+          console.log(
+            "\nNew lowest bingo iteration on vertical check: " + (i + 1)
+          );
+          console.log("Start pos: " + 5 + "\n");
+          console.log(row1);
+          console.log(row2);
+          console.log(row3);
+          console.log(row4);
+          console.log(row5);
+          break;
+        }
+      }
+      if (i > lowestBingo) {
+        console.log("Iteration surpassed previous lowest bingo, proceeding...");
+        break;
       }
       // FIND SUM OF ALL *UNMARKED* NUMBERS
       // MULTIPLY SUM WITH WINNING NUMBER
     }
+  }
+  if (bingo) {
+    console.log("Reached bingo if \nCurrent iteration");
+    for (var i = 0; i < 5; ++i) {
+      row1.push(row2[i]);
+    }
+    for (var i = 0; i < 5; ++i) {
+      row1.push(row3[i]);
+    }
+    for (var i = 0; i < 5; ++i) {
+      row1.push(row4[i]);
+    }
+    for (var i = 0; i < 5; ++i) {
+      row1.push(row5[i]);
+    }
+    // Bingocheck for sum
+    for (var i = 0; i < 25; ++i) {
+      if (bingoCheck[i] != "X") {
+        sum += parseInt(row1[i]);
+      }
+    }
+    console.log("Sum: " + sum);
+    console.log("Number: " + number);
+    finalInteger = number * sum;
+    bingo = false;
+    console.log(finalInteger);
   }
 }
