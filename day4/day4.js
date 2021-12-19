@@ -112,7 +112,7 @@ function checkBingo(card, numbers) {
         bingoCheck[3] == "X" &&
         bingoCheck[4] == "X"
       ) {
-        // BINGO ON FIRST ROW
+        console.log("\nBINGO ON FIRST ROW");
         if (i < lowestBingo) {
           bingo = true;
           lowestBingo = i;
@@ -135,7 +135,7 @@ function checkBingo(card, numbers) {
         bingoCheck[8] == "X" &&
         bingoCheck[9] == "X"
       ) {
-        // BINGO ON SECOND ROW
+        console.log("\nBINGO ON SECOND ROW");
         if (i < lowestBingo) {
           bingo = true;
           lowestBingo = i;
@@ -158,7 +158,7 @@ function checkBingo(card, numbers) {
         bingoCheck[13] == "X" &&
         bingoCheck[14] == "X"
       ) {
-        // BINGO ON THIRD ROW
+        console.log("\nBINGO ON THIRD ROW");
         if (i < lowestBingo) {
           bingo = true;
           lowestBingo = i;
@@ -182,7 +182,7 @@ function checkBingo(card, numbers) {
         bingoCheck[18] == "X" &&
         bingoCheck[19] == "X"
       ) {
-        // BINGO ON FOURTH ROW
+        console.log("\nBINGO ON FOURTH ROW");
         if (i < lowestBingo) {
           bingo = true;
           lowestBingo = i;
@@ -205,7 +205,7 @@ function checkBingo(card, numbers) {
         bingoCheck[23] == "X" &&
         bingoCheck[24] == "X"
       ) {
-        console.log("BINGO ON FIFTH ROW");
+        console.log("\nBINGO ON FIFTH ROW");
         if (i < lowestBingo) {
           bingo = true;
           lowestBingo = i;
@@ -338,7 +338,6 @@ function checkBingo(card, numbers) {
         }
       }
       if (i > lowestBingo) {
-        console.log("Iteration surpassed previous lowest bingo, proceeding...");
         break;
       }
       // FIND SUM OF ALL *UNMARKED* NUMBERS
@@ -346,7 +345,6 @@ function checkBingo(card, numbers) {
     }
   }
   if (bingo) {
-    console.log("Reached bingo if \nCurrent iteration");
     for (var i = 0; i < 5; ++i) {
       row1.push(row2[i]);
     }
